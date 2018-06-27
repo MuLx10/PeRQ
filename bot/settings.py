@@ -106,9 +106,7 @@ redis_url = os.environ.get('CHATBOT_REDIS_URL', 'localhost')
 CHANNEL_LAYERS = {
     "default": {
         "BACKEND": "asgi_redis.RedisChannelLayer",
-        "CONFIG": {
-            "hosts": [os.environ.get('REDIS_URL', 'redis://{}:6379'.format(redis_url))],
-        },
+
         "ROUTING": "ui.routing.channel_routing",
     },
 }

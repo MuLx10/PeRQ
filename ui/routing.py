@@ -6,3 +6,5 @@ channel_routing = {
     'websocket.receive': consumer.ws_receive,
     'websocket.disconnect': consumer.ws_disconnect,
 }
+
+
