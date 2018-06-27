@@ -4,9 +4,8 @@ WORKDIR /usr/src/app
 
 # Install postgres
 RUN apt-get update && apt-get install -y --no-install-recommends \
-    libpq-dev && \
+    libpq-dev redis-server && \
     rm -rf /var/lib/apt/lists/*
-RUN apt-get -y install unzip && apt-get install redis-server
 
 # install requirements
 # this way when you build you won't need to install again
