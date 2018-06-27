@@ -703,7 +703,7 @@
 	#main {
 		position: relative;
 		max-width: 100%;
-		min-width: 35em; /* HERE IS THE WIDTH OF THE MAIN BLOCK */
+		min-width: 95em; /* HERE IS THE WIDTH OF THE MAIN BLOCK */
 		padding: 4.5em 3em 3em 3em ;
 		background: #ffffff;
 		border-radius: 4px;
@@ -727,7 +727,8 @@
 		#main .avatar {
 			position: relative;
 			display: block;
-			margin-bottom: 1.5em;
+			margin-bottom: 0.5em;
+			margin-top: 0.5em;
 		}
 
 			#main .avatar img {
