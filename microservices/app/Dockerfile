@@ -27,7 +27,7 @@ WORKDIR /usr/src/app/bot
 ENV CHATBOT_SECRET_KEY="dgfhfsdcdh=27)f6_fdsffsdf434332^%%$3=v^$bh9p0ihd-%v"
 ENV CHATBOT_REDIS_URL="redis"
 ENV POSTGRES_USERNAME="admin"
-ENV POSTGRES_PASSWORD="xxxxxxx" # get this password by executin
+ENV POSTGRES_PASSWORD="xxxxxxx" 
 ENV POSTGRES_HOSTNAME="localhost"
 ENV POSTGRES_PORT="6432"
 
