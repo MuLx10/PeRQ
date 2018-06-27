@@ -107,6 +107,7 @@ class Chatbot(object):
         """
         files_list = []
         root = 'chatbot/knowledge/' + color
+        print(os.listdir('.'))
         for path, subdirs, files in os.walk(root):
             for name in files:
                 files_list.append(os.path.join(root, name))
