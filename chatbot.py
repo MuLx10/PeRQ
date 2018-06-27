@@ -17,10 +17,10 @@ class Chatbot(object):
         self.arg = 0
         
         self.atomic_kernel = self.spin_kernel('atomic')
-        # self.cities = pd.read_csv(r'chatbot/weather/city.csv')
-        # self.cities.drop(
-        #     ['locId', 'country', 'region', 'postalCode', 'metroCode', 'areaCode'],
-        #     inplace=True, axis=1)
+        self.cities = pd.read_csv(r'chatbot/weather/city.csv')
+        self.cities.drop(
+            ['locId', 'country', 'region', 'postalCode', 'metroCode', 'areaCode'],
+            inplace=True, axis=1)
     def saveBrain(self):
         self.atomic_kernel.saveBrain('bot_brain.brn')
 
@@ -96,10 +96,12 @@ class Chatbot(object):
         green_aimls = self.get_all_files('green')
         orange_aimls = self.get_all_files('orange')
         yellow_aimls = self.get_all_files('yellow')
+        yellow_aimls = self.get_all_files('aiml')
         aimls = green_aimls+orange_aimls+yellow_aimls
         print('kernel',aimls)
         for aiml_file in aimls:
-            kernel.learn(aiml_file)
+            if '.aiml' in aiml_file:
+                kernel.learn(aiml_file)
         return kernel
 
 
