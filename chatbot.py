@@ -17,7 +17,7 @@ class Chatbot(object):
         self.arg = 0
         
         self.atomic_kernel = self.spin_kernel('atomic')
-        self.cities = pd.read_csv(r'chatbot/weather/city.csv')
+        self.cities = pd.read_csv(r'weather/city.csv')
         self.cities.drop(
             ['locId', 'country', 'region', 'postalCode', 'metroCode', 'areaCode'],
             inplace=True, axis=1)
