@@ -10,12 +10,12 @@
 		<title>PeRQ</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
-		<link rel="icon" href="https://raw.githubusercontent.com/MuLx10/PeRQ/master/microservices/app/app/src/bot/ui/static/images/logo.png?token=AWW8ol_9Q7VYYHzjkRmXnyfebRTyHMiaks5bPGDkwA%3D%3D">
+		<link rel="icon" href="{% static 'images/logo.png' %}">
 		<!--[if lte IE 8]><script src="{% static 'assets/js/html5shiv.js' %}"></script><![endif]-->
-		<link rel="stylesheet" href="https://raw.githubusercontent.com/MuLx10/PeRQ/master/microservices/app/app/src/bot/ui/static/assets/css/main.css?token=AWW8oiOireMxYbKmyRtYkIRF7J5d-jY2ks5bPGEOwA%3D%3D" />
+		<link rel="stylesheet" href="{% static 'assets/css/main.css' %}" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="{% static 'assets/css/ie9.css' %}" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="{% static 'assets/css/ie8.css' %}" /><![endif]-->
-		<noscript><link rel="stylesheet" href="https://raw.githubusercontent.com/MuLx10/PeRQ/master/microservices/app/app/src/bot/ui/static/assets/css/noscript.css?token=AWW8orq7tU3s-A0vI-kSjWJPO0AG1Mguks5bPGEpwA%3D%3D" /></noscript>
+		<noscript><link rel="stylesheet" href="{% static 'assets/css/noscript.css' %}" /></noscript>
 	</head>
 	<body class="is-loading">
 
@@ -25,7 +25,7 @@
 				<!-- Main -->
 					<section id="main">
 						<header>
-							<span class="avatar"><img src="https://raw.githubusercontent.com/MuLx10/PeRQ/master/microservices/app/app/src/bot/ui/static/images/avatar.png?token=AWW8orF6rYwJWf9Hwkg3DNcbWdUgHJXqks5bPGCswA%3D%3D" alt="" height="150" width="200" /></span>
+							<span class="avatar"><img src="{% static 'images/avatar.png' %}" alt="" height="150" width="200" /></span>
 							<h1>Chatbot</h1>
 						</header>
 						
@@ -67,9 +67,9 @@
 				}
 			</script>
 
-            <script type="text/javascript" src='https://code.jquery.com/jquery-3.1.0.min.js'></script>
-            <script type="text/javascript" src='https://raw.githubusercontent.com/MuLx10/PeRQ/master/microservices/app/app/src/bot/ui/static/js/reconnecting-websocket.js?token=AWW8ouafDNYhf4p5hfKBmQwXKmMQmJgxks5bPGBnwA%3D%3D'></script>
-            <script type="text/javascript" src='https://raw.githubusercontent.com/MuLx10/PeRQ/master/microservices/app/app/src/bot/ui/static/js/chat.js?token=AWW8ok7HxfgPaxrHO7GUU3IzD6YXQD7Xks5bPGBCwA%3D%3D'></script>
+            <script type="text/javascript" src='{% static "js/jquery-3.1.0.min.js" %}'></script>
+            <script type="text/javascript" src='{% static "js/reconnecting-websocket.js" %}'></script>
+            <script type="text/javascript" src='{% static "js/chat.js" %}'></script>
 
 	</body>
 </html>
