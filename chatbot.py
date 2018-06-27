@@ -21,6 +21,7 @@ class Chatbot(object):
         self.cities.drop(
             ['locId', 'country', 'region', 'postalCode', 'metroCode', 'areaCode'],
             inplace=True, axis=1)
+
     def saveBrain(self):
         self.atomic_kernel.saveBrain('bot_brain.brn')
 
@@ -93,15 +94,18 @@ class Chatbot(object):
         returns: kernel, learned from knowledge_file
         """
         kernel = aiml.Kernel()
-        green_aimls = self.get_all_files('green')
-        orange_aimls = self.get_all_files('orange')
-        yellow_aimls = self.get_all_files('yellow')
-        yellow_aimls = self.get_all_files('aiml')
-        aimls = green_aimls+orange_aimls+yellow_aimls
-        print('kernel',aimls)
-        for aiml_file in aimls:
-            if '.aiml' in aiml_file:
-                kernel.learn(aiml_file)
+        if os.path.isfile("bot_brain.brn"):
+            kernel.bootstrap(brainFile = "bot_brain.brn")
+        else:
+            green_aimls = self.get_all_files('green')
+            orange_aimls = self.get_all_files('orange')
+            yellow_aimls = self.get_all_files('yellow')
+            aimls = green_aimls+orange_aimls+yellow_aimls
+            print('kernel',aimls)
+            for aiml_file in aimls:
+                if '.aiml' in aiml_file:
+                    kernel.learn(aiml_file)
+            kernel.saveBrain('bot_brain.brn')
         return kernel
 
 
