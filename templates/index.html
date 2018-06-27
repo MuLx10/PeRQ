@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>PeRQ</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <script type="text/javascript" src="{{url_for('static',filename='js/bootstrap.min.js')}}"></script>
+  <script type="text/javascript" src="{{url_for('static',filename='jquery.min.js')}}"></script>
+  <link rel="stylesheet" type="text/css" href="{{url_for('static',filename='css/bootstrap.min.css')}}">
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <link rel="icon" href="{{url_for('static',filename='images/logo.png')}}">
+  <link rel="stylesheet" href="{{url_for('static',filename='assets/css/main.css')}}" />
+  <noscript><link rel="stylesheet" href="{{url_for('static',filename='assets/css/noscript.css')}}" /></noscript>
+</head>
+<body class="is-loading">
+
+    <div id="wrapper">
+
+        <!-- Main -->
+            <section id="main">
+                <header>
+                    <span class="avatar"><img src="{{url_for('static',filename='images/avatar.png') }}" alt="" height="150" width="200" /></span>
+                    <h1>Chatbot</h1>
+                </header>
+                    <form method="post" class="form-group" id="form-chat">
+                        <div class="input-group">
+                            <input type="text" id="chatmessage" name="chatmessage" class="form-control">
+                            <span class="input-group-btn">
+                                <button type="button" class="btn-warning btn-sm col-10" id="btn-chat">Submit</button>
+                            </span>
+                        </div>
+                    </form>
+
+                <div id="chat_zone"></div>
+                
+                <hr />
+                
+                <footer>
+                    <ul class="icons">
+                        <li><a href="https://github.com/MuLx10/DeepQnA" class="fa-github">Github</a></li>
+                        <li><a href="mailto:mehulkumarnirala@iitkgp.ac.in" class="fa-envelope">Contact</a></li>
+                        <li><a href="https://www.linkedin.com/in/mulx10" class="fa-linkedin">LinkedIn</a></li>
+                    </ul>
+                </footer>
+            </section>
+
+
+
+    </div>
+
+
+    </div>
+    <script>
+        if ('addEventListener' in window) {
+            window.addEventListener('load', function() { document.body.className = document.body.className.replace(/\bis-loading\b/, ''); });
+            document.body.className += (navigator.userAgent.match(/(MSIE|rv:11\.0)/) ? ' is-ie' : '');
+        }
+    </script>
+
+    <script type="text/javascript" src="{{url_for('static',filename='js/jquery-3.1.0.min.js') }}></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/reconnecting-websocket.js') }}></script>
+    <script type="text/javascript" src="{{url_for('static',filename='js/chat.js') }}></script>
+</body>
+<script>
+$(function(){
+    $( "#btn-chat" ).click(function( event ) {
+      event.preventDefault();
+      $("#form-chat").submit();
+  });
+    $("#form-chat").submit(function(event){
+        event.preventDefault();
+        var pesan =$("#chatmessage").val().toUpperCase();
+        $( ".media-list" ).append('<li class="left clearfix"><span class="chat-img pull-left">\
+                                <img src="http://placehold.it/50/55C1E7/fff&text=U" alt="User Avatar" class="img-circle" />\
+                            </span>\
+                            <div class="chat-body clearfix">\
+                                <div class="header">\
+                                    <strong class="primary-font">USER</strong> <small class="pull-right text-muted">\
+                                        <span class="glyphicon glyphicon-time"></span>12 mins ago</small>\
+                                    </div>\
+                                    <p class="pull-right"><font color="blue">'+pesan+'</font></p>\
+                                </div>\
+                            </li>');
+        $.ajax({
+            type: "POST",
+            url: "/ask",
+            data: $(this).serialize(),
+            success: function(response) {
+                $('#chatmessage').val('');
+                var answer = response.answer.toUpperCase();
+                const chatPanel = document.getElementById("chatPanel");
+                $(".media-list").append('<li class="right clearfix"><span class="chat-img pull-right">\
+                                <img src="http://placehold.it/50/FA6F57/fff&text=ME" alt="User Avatar" class="img-circle" />\
+                            </span>\
+                            <div class="chat-body clearfix">\
+                                <div class="header">\
+                                    <small class=" text-muted"><span class="glyphicon glyphicon-time"></span>13 mins ago</small>\
+                                    <strong class="pull-right primary-font">ROBOT</strong>\
+                                </div>\
+                                <p class="pull-left"><font color ="red">'+answer+'</font></p>\
+                             </div>\
+                        </li>');
+                $(".panel-body").stop().animate({ scrollTop: $(".panel-body")[0].scrollHeight}, 1000);
+            },
+            error: function(error) {
+                console.log(error);
+            }
+        });
+
+    });
+    
+});
+
+</script>
+</html>

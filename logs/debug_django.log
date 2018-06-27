@@ -1,8 +1,0 @@
-Not Found: /favicon.ico
-"GET / HTTP/1.1" 200 2768
-Not Found: /chat
-"GET /chat HTTP/1.1" 404 2098
-Not Found: /chat
-"GET /chat HTTP/1.1" 404 2098
-Not Found: /chat
-"GET /chat HTTP/1.1" 404 2098
