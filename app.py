@@ -2,7 +2,7 @@ from flask import Flask, render_template, request, jsonify, url_for
 import aiml
 import os
 from chatbot import Chatbot
-from utils import get_json_resp
+from utils.utils import get_json_resp_aog,get_json_resp_df
 import json
 
 app = Flask(__name__)
@@ -35,11 +35,16 @@ def ask():
 @app.route("/horro", methods=['POST','GET'])
 def horo():
     data = json.loads(request.data)
-
+    # print(data)
     sunsign = str(data['queryResult']['parameters']['astroSign']).lower()
-    day = str(data['queryResult']['parameters']['day']).lower()
-    print(sunsign,day)
-    resp = get_json_resp(sunsign,day)
+    try:
+        time = str(data['queryResult']['parameters']['time']).lower()
+    except:
+        time ='today'
+        # print(time)
+    print(sunsign,time)
+    resp = get_json_resp_aog(sunsign,time)
+    # resp = get_json_resp_df(sunsign,time)
     return jsonify(resp)
 
 if __name__ == "__main__":
@@ -52,10 +57,10 @@ if __name__ == "__main__":
 # {
 #   "responseId": "a5b77534-10c6-467c-8ae6-5ee479dfce61",
 #   "queryResult": {
-#     "queryText": "What's today's horoscope for Leo?",
+#     "queryText": "What's totime's horoscope for Leo?",
 #     "parameters": {
 #       "astroSign": "Leo",
-#       "day": "today"
+#       "time": "totime"
 #     },
 #     "allRequiredParamsPresent": true,
 #     "fulfillmentText": "Hi Leo today",
