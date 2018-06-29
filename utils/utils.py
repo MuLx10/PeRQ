@@ -1,6 +1,6 @@
 import urllib, json
 from copy import copy
-from pyhoroscope import fetch_horoscope
+from utils.pyhoroscope import fetch_horoscope
 url = 'http://horoscope-api.herokuapp.com/horoscope'
 
 fulfillmentMessages = {"fulfillmentMessages":[{"text":{"text":["here is your horoscope"]}},{"card":{"buttons":[{"postback":"http://sandipbgt.com/api/horoscope/Leo/todayleo/todayleo/todayleo/todayleo/today","text":"(c) Kelli Fox, The Astrologer"}],"imageUri":"https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png","subtitle":"text","title":"LEO"}}],"outputContexts":[{"lifespanCount":2,"name":"projects/tarrot-99e8d/agent/sessions/fef2289f-7493-f0c5-765a-9e34e3bdffa2/contexts/HoroScope","parameters":{"astroSign":"Leo"}}]}
