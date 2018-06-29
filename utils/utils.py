@@ -18,7 +18,7 @@ def get_json_resp_aog(sunsign,day):
     date = 'Horoscope-API  '+str(dicti['date'])
   except:
     date = 'Horoscope-API'
-  resp['payload']['google']['richResponse']['items'][0]['simpleResponse']['textToSpeech'] = "Here's your Horoscope for "+day.upper()
+  resp['payload']['google']['richResponse']['items'][0]['simpleResponse']['textToSpeech'] = horoscope.split('.')[0]+'.'
   resp['payload']['google']['richResponse']['items'][1]['basicCard']['title'] = sunsign.upper()
   resp['payload']['google']['richResponse']['items'][1]['basicCard']['image']['url'] = image
   resp['payload']['google']['richResponse']['items'][1]['basicCard']['subtitle'] = horoscope.split('.')[0]+'.'
