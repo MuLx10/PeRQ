@@ -5,7 +5,59 @@ url = 'http://horoscope-api.herokuapp.com/horoscope'
 
 fulfillmentMessages = {"fulfillmentMessages":[{"text":{"text":["here is your horoscope"]}},{"card":{"buttons":[{"postback":"http://sandipbgt.com/api/horoscope/Leo/todayleo/todayleo/todayleo/todayleo/today","text":"(c) Kelli Fox, The Astrologer"}],"imageUri":"https://assistant.google.com/static/images/molecule/Molecule-Formation-stop.png","subtitle":"text","title":"LEO"}}],"outputContexts":[{"lifespanCount":2,"name":"projects/tarrot-99e8d/agent/sessions/fef2289f-7493-f0c5-765a-9e34e3bdffa2/contexts/HoroScope","parameters":{"astroSign":"Leo"}}]}
 
-sample_resp = {"payload":{"google":{"expectUserResponse":"true","richResponse":{"items":[{"simpleResponse":{"textToSpeech":"This is a Basic Card:"}},{"basicCard":{"title":"Card Title","image":{"url":"https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png","accessibilityText":"Google Logo"},"subtitle":"dfgh","formattedText":"body","buttons":[{"title":"horoscope-api","openUrlAction":{"url":"http://horoscope-api.herokuapp.com/horoscope/"}}],"imageDisplayOptions":"WHITE"}}]}}}}
+sample_resp = {
+               "payload": {
+                  "google": {
+                     "expectUserResponse": "true",
+                     "richResponse": {
+                        "items": [
+                           {
+                              "simpleResponse": {
+                                 "textToSpeech": "This is a Basic Card:",
+                                 "displayText": "Choose Your Zodiac"
+                              }
+                           },
+                           {
+                              "basicCard": {
+                                 "title": "Card Title",
+                                 "image": {
+                                    "url": "https://www.google.com/images/branding/googlelogo/2x/googlelogo_color_272x92dp.png",
+                                    "accessibilityText": "Google Logo"
+                                 },
+                                 "subtitle": "dfgh",
+                                 "formattedText": "body",
+                                 "buttons": [
+                                    {
+                                       "title": "horoscope-api",
+                                       "openUrlAction": {
+                                          "url": "http://horoscope-api.herokuapp.com/horoscope/"
+                                       }
+                                    }
+                                 ],
+                                 "imageDisplayOptions": "WHITE"
+                              }
+                           },
+                           {
+                              "simpleResponse": {
+                                 "textToSpeech": "Want to Know More ? ",
+                                 "displayText": "Want to Know More ? "
+                              }
+                           }
+                        ],
+                        "suggestions": [
+                           {
+                              "title": "yes"
+                           },
+                           {
+                              "title": "no"
+                           }
+                        ]
+                     }
+                  }
+               }
+            }
+
+
 
 
 
@@ -19,6 +71,7 @@ def get_json_resp_aog(sunsign,day):
   except:
     date = 'Horoscope-API'
   resp['payload']['google']['richResponse']['items'][0]['simpleResponse']['textToSpeech'] = horoscope.split('.')[0]+'.'
+  resp['payload']['google']['richResponse']['items'][0]['simpleResponse']['displayText'] = horoscope.split('.')[0]+'.'
   resp['payload']['google']['richResponse']['items'][1]['basicCard']['title'] = sunsign.upper()
   resp['payload']['google']['richResponse']['items'][1]['basicCard']['image']['url'] = image
   resp['payload']['google']['richResponse']['items'][1]['basicCard']['subtitle'] = horoscope.split('.')[0]+'.'

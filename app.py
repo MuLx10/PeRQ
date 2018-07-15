@@ -1,4 +1,5 @@
 from flask import Flask, render_template, request, jsonify, url_for
+from flask import stream_with_context, Response
 import aiml
 import os
 from chatbot import Chatbot
@@ -34,7 +35,7 @@ def ask():
 
 @app.route("/horro", methods=['POST','GET'])
 def horo():
-    data = json.loads(request.data)
+    data = json.loads(request.data.decode('utf-8'))
     # print(data)
     sunsign = str(data['queryResult']['parameters']['astroSign']).lower()
     try:
@@ -44,43 +45,17 @@ def horo():
         # print(time)
     print(sunsign,time)
     resp = get_json_resp_aog(sunsign,time)
+    # ans = [resp,resp]
     # resp = get_json_resp_df(sunsign,time)
     return jsonify(resp)
+    def generate():
+        for resp in ans:
+            yield jsonify(resp)
+    return Response(generate(), mimetype='text/json')
 
 if __name__ == "__main__":
     port = int(os.environ.get('PORT',5000))
-    app.run(host='0.0.0.0', port=port, debug=not True)
+    app.run(host='0.0.0.0', port=port, debug= True)
 
 
 
-
-# {
-#   "responseId": "a5b77534-10c6-467c-8ae6-5ee479dfce61",
-#   "queryResult": {
-#     "queryText": "What's totime's horoscope for Leo?",
-#     "parameters": {
-#       "astroSign": "Leo",
-#       "time": "totime"
-#     },
-#     "allRequiredParamsPresent": true,
-#     "fulfillmentText": "Hi Leo today",
-#     "fulfillmentMessages": [{
-#       "text": {
-#         "text": ["Hi Leo today"]
-#       }
-#     }],
-#     "intent": {
-#       "name": "projects/tarrot-99e8d/agent/intents/428e1c41-0ab0-4242-8114-d7c7aa26c1b5",
-#       "displayName": "actions.intent.GET_HOROSCOPE"
-#     },
-#     "intentDetectionConfidence": 1.0,
-#     "diagnosticInfo": {
-#     },
-#     "languageCode": "en"
-#   },
-#   "originalDetectIntentRequest": {
-#     "payload": {
-#     }
-#   },
-#   "session": "projects/tarrot-99e8d/agent/sessions/fef2289f-7493-f0c5-765a-9e34e3bdffa2"
-# }
